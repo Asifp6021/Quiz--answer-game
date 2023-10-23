@@ -131,12 +131,18 @@ function renderQuestions() {
 	document.body.style.backgroundImage = bodyImg;
 }
 
-renderQuestions();
-start.style.display = 'none';
-quiz.style.visibility = 'visible';
-renderProgress();
-renderTimecounter();
-TIMER = setInterval(renderTimecounter, 1000);
+// start button eventListener
+start.addEventListener('click', startQuiz);
+
+// starting quiz
+function startQuiz() {
+	renderQuestions();
+	start.style.display = 'none';
+	quiz.style.visibility = 'visible';
+	renderProgress();
+	renderTimecounter();
+	TIMER = setInterval(renderTimecounter, 1000);
+}
 
 // rendering progress bar element dynamically
 function renderProgress() {
