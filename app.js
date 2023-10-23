@@ -1,11 +1,11 @@
 const start = document.querySelector('.start');
-const quit = document.querySelector('.quiz');
+const quiz = document.querySelector('.quiz');
 const question = document.querySelector('.question');
 const allAnswersChoices = document.querySelectorAll('.choice');
-const answerchoiceA = document.querySelector('#A');
-const answerchoiceB = document.querySelector('#B');
-const answerchoiceC = document.querySelector('#C');
-const answerchoiceD = document.querySelector('#D');
+const answerChoiceA = document.querySelector('#A');
+const answerChoiceB = document.querySelector('#B');
+const answerChoiceC = document.querySelector('#C');
+const answerChoiceD = document.querySelector('#D');
 const timeGauge = document.querySelector('.time-gauge');
 const progressContainer = document.querySelector('.progress-container');
 const scoreContainer = document.querySelector('.score-container');
@@ -105,3 +105,26 @@ let questions = [
 		correctAnswer: 'It will be chased or killed',
 	},
 ];
+
+// neccesiry variable think of it as state management in js
+const lastQuestion = questions.length - 1;
+let activeQuestion = 0;
+let count = 0;
+
+// rendering question and options
+function renderQuestions() {
+	let q = questions[activeQuestion];
+	question.innerHTML = '<p>' + q.question + '</p>';
+	answerChoiceA.innerHTML = q.choiceA;
+	answerChoiceB.innerHTML = q.choiceB;
+	answerChoiceC.innerHTML = q.choiceC;
+	answerChoiceD.innerHTML = q.choiceD;
+
+	let bodyImg = `url('${q.questionImg}')`;
+	document.body.style.backgroundImage = bodyImg;
+}
+
+start.style.display = 'none';
+quiz.style.visibility = 'visible';
+
+renderQuestions();
