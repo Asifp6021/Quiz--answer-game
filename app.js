@@ -111,6 +111,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let activeQuestion = 0;
 let count = 0;
+let score = 0;
 
 // rendor Progress variable
 const questionTime = 10; // 10 seconds
@@ -173,3 +174,21 @@ allAnswersChoices.forEach(function (clickAnswer) {
 });
 
 // checking user's selected answer
+function checkAnswer(answer) {
+    if (answer === questions[activeQuestion].correctAnswer) {
+        score++;
+        answerIsCorrect();
+    } else {
+        answerIsIncorrect();
+    }
+}
+
+// changing background to green
+function answerIsCorrect() {
+    document.getElementById(activeQuestion).style.backgroundColor = 'green';
+}
+
+//changing backgroung to red
+function answerIsIncorrect() {
+    document.getElementById(activeQuestion).style.backgroundColor = 'red';
+}

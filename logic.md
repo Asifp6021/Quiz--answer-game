@@ -56,4 +56,15 @@ function renderTimecounter() {
 
     remember we can know where user has clicked using e.target. so we want to grab innerText because innerText is answer.
 
-    
+       6.   -----------*********** checking whether answer is right or not ********
+
+    function checkAnswer(answer) {
+    if (answer === questions[activeQuestion].correctAnswer) {
+        score++;
+        answerIsCorrect();
+    } else {
+        answerIsIncorrect();
+    }
+}
+
+if (answer === questions[activeQuestion].correctAnswer) <- first i am checking on which question user is corrently present. then checking that comparing that questions correct answer with the user's selected answer.
