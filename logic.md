@@ -68,3 +68,12 @@ function renderTimecounter() {
 }
 
 if (answer === questions[activeQuestion].correctAnswer) <- first i am checking on which question user is corrently present. then checking that comparing that questions correct answer with the user's selected answer.
+
+
+7.   -----------*********** moving to next quetion ********
+
+1. doesn't matter if selected answer is right or wrong i want to move to next quetion. that is why within checkAnswer function i called nextQuestion.
+
+2. and also if user not able to give answer in 10 seconds. then also i moved to next question. and consider wrong answer for which user have not given answer.
+
+that is why i called nextquetion and checkIsIncorrect withing timeCounter function.

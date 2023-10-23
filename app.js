@@ -20,7 +20,7 @@ let questions = [
 		choiceB: '150',
 		choiceC: '10',
 		choiceD: '27',
-		correctAnswer: '100',
+		correctAnswer: '100'
 	},
 	{
 		question: 'What breed of cat has a reputation for being cross-eyed?',
@@ -29,7 +29,7 @@ let questions = [
 		choiceB: 'Egyptian Mau',
 		choiceC: 'Siamese',
 		choiceD: 'Persian',
-		correctAnswer: 'Siamese',
+		correctAnswer: 'Siamese'
 	},
 	{
 		question: 'What is the most common training command taught to dogs?',
@@ -38,7 +38,7 @@ let questions = [
 		choiceB: 'Sit',
 		choiceC: 'Dance',
 		choiceD: 'Roll',
-		correctAnswer: 'Sit',
+		correctAnswer: 'Sit'
 	},
 	{
 		question: 'What is a dog’s most highly developed sense?',
@@ -47,7 +47,7 @@ let questions = [
 		choiceB: 'Sight',
 		choiceC: 'Taste',
 		choiceD: 'Touch',
-		correctAnswer: 'Smell',
+		correctAnswer: 'Smell'
 	},
 	{
 		question: ' How many known species of birds are there?',
@@ -56,7 +56,7 @@ let questions = [
 		choiceB: '10,000',
 		choiceC: '20,000',
 		choiceD: '40,000',
-		correctAnswer: '10,000',
+		correctAnswer: '10,000'
 	},
 	{
 		question: 'What evolutionary adaptation helps birds fly?',
@@ -65,7 +65,7 @@ let questions = [
 		choiceB: 'Beaks',
 		choiceC: 'Hollow Bones',
 		choiceD: 'All of These',
-		correctAnswer: 'All of These',
+		correctAnswer: 'All of These'
 	},
 	{
 		question:
@@ -75,7 +75,7 @@ let questions = [
 		choiceB: 'Highland Elk',
 		choiceC: 'Rocky Mountain Elk',
 		choiceD: 'Tule Elk',
-		correctAnswer: 'Highland Elk',
+		correctAnswer: 'Highland Elk'
 	},
 	{
 		question: 'What is a baby elk called?',
@@ -84,7 +84,7 @@ let questions = [
 		choiceB: 'Sow',
 		choiceC: 'Cow',
 		choiceD: 'Calf',
-		correctAnswer: 'Calf',
+		correctAnswer: 'Calf'
 	},
 	{
 		question: 'What do wolves use their scent for?',
@@ -93,7 +93,7 @@ let questions = [
 		choiceB: 'Finding Prey',
 		choiceC: 'A Cover-up',
 		choiceD: 'Nothing',
-		correctAnswer: 'Marking Territory',
+		correctAnswer: 'Marking Territory'
 	},
 	{
 		question:
@@ -103,8 +103,8 @@ let questions = [
 		choiceB: 'It will be accepted into the pack',
 		choiceC: 'It will be chased or killed',
 		choiceD: 'It will be required to present prey to the pack',
-		correctAnswer: 'It will be chased or killed',
-	},
+		correctAnswer: 'It will be chased or killed'
+	}
 ];
 
 // neccesiry variable think of it as state management in js
@@ -147,7 +147,7 @@ function startQuiz() {
 
 // rendering progress bar element dynamically
 function renderProgress() {
-	for (let questionIndex = 0; questionIndex < lastQuestion; questionIndex++) {
+	for (let questionIndex = 0; questionIndex <= lastQuestion; questionIndex++) {
 		progressContainer.innerHTML +=
 			"<div class='progress-box' id=" + questionIndex + '></div>';
 	}
@@ -161,7 +161,8 @@ function renderTimecounter() {
 
 		count++;
 	} else {
-		count = 0;
+		answerIsIncorrect();
+		nextQuestion();
 	}
 }
 
@@ -175,20 +176,46 @@ allAnswersChoices.forEach(function (clickAnswer) {
 
 // checking user's selected answer
 function checkAnswer(answer) {
-    if (answer === questions[activeQuestion].correctAnswer) {
-        score++;
-        answerIsCorrect();
-    } else {
-        answerIsIncorrect();
-    }
+	if (answer === questions[activeQuestion].correctAnswer) {
+		score++;
+		answerIsCorrect();
+	} else {
+		answerIsIncorrect();
+	}
+
+	nextQuestion();
 }
 
 // changing background to green
 function answerIsCorrect() {
-    document.getElementById(activeQuestion).style.backgroundColor = 'green';
+	document.getElementById(activeQuestion).style.backgroundColor = 'green';
 }
 
 //changing backgroung to red
 function answerIsIncorrect() {
-    document.getElementById(activeQuestion).style.backgroundColor = 'red';
+	document.getElementById(activeQuestion).style.backgroundColor = 'red';
+}
+
+// moving to nextQuestion
+function nextQuestion() {
+	count = 0;
+
+	if (activeQuestion < lastQuestion) {
+		activeQuestion++;
+		renderQuestions();
+	} else {
+		clearInterval(TIMER);
+		renderScore();
+	}
+}
+
+// questions/game end showing score
+function renderScore() {
+    scoreContainer.style.visibility = 'visible';
+
+    let scorePercentage = Math.round(100 * score) / questions.length;
+    
+   scoreContainer.innerHTML = `<h2>Percentage of correctly answered questions: ${scorePercentage}</h2>`
+
+   scoreContainer.innerHTML += `<h2>Number of correctly answered questions: ${score}</h2>`
 }
