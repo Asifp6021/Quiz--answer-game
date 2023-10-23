@@ -17,3 +17,19 @@ let count = 0;
 this is three variable i have created thik of it as state management js.
 
 and using this i have created function rendered.
+
+3.  -----------*********** render time progress ********
+
+const questionTime = 10; // 10 seconds
+const gaugeWidth = 800; // 800px <- this is the widh of the progress time bar and we have 10 seconds so i devided 800 / 10 = 80; each second 80px background color going to appear so user will have illusion that it is progressing.
+
+const gaugeUnit = gaugeWidth / questionTime; //80px
+
+
+---------------------
+
+function renderProgress() {
+    for (let questionIndex = 0; questionIndex < lastQuestion; questionIndex++) {
+        progressContainer.innerHTML += "<div class='progress-box' id=" + questionIndex + "></div>"
+    }
+} and we have 10 box because we have 10 question it shows progress of user. in the game.

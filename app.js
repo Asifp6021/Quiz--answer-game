@@ -111,6 +111,12 @@ const lastQuestion = questions.length - 1;
 let activeQuestion = 0;
 let count = 0;
 
+// rendor Progress variable
+const questionTime = 10; // 10 seconds
+const gaugeWidth = 800; // 800px
+const gaugeUnit = gaugeWidth / questionTime; //80px
+let TIMER;
+
 // rendering question and options
 function renderQuestions() {
 	let q = questions[activeQuestion];
@@ -128,3 +134,13 @@ start.style.display = 'none';
 quiz.style.visibility = 'visible';
 
 renderQuestions();
+
+
+// rendering progress bar element dynamically
+function renderProgress() {
+    for (let questionIndex = 0; questionIndex < lastQuestion; questionIndex++) {
+        progressContainer.innerHTML += "<div class='progress-box' id=" + questionIndex + "></div>"
+    }
+}
+
+renderProgress();
