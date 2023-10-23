@@ -49,3 +49,11 @@ function renderTimecounter() {
     here is if count reaches 10 then again i made it 0 in else part.
 
     and i am going to add this function in timeIntervel. so i can run this code each second
+
+    6.   -----------*********** grabbing user's selected answer ********
+
+    i am using forEach loop to keep track of all choices. and adding eventlistener on each one if user clicks any of one.
+
+    remember we can know where user has clicked using e.target. so we want to grab innerText because innerText is answer.
+
+    

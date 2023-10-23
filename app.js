@@ -163,3 +163,13 @@ function renderTimecounter() {
 		count = 0;
 	}
 }
+
+// grabbing user's answers from choice
+allAnswersChoices.forEach(function (clickAnswer) {
+	clickAnswer.addEventListener('click', function (e) {
+		let userAnswer = e.target.innerText;
+		checkAnswer(userAnswer);
+	});
+});
+
+// checking user's selected answer
