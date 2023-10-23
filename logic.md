@@ -33,3 +33,19 @@ function renderProgress() {
         progressContainer.innerHTML += "<div class='progress-box' id=" + questionIndex + "></div>"
     }
 } and we have 10 box because we have 10 question it shows progress of user. in the game.
+
+5.   -----------*********** adding timeCounter ********
+
+function renderTimecounter() {
+    if (count <= questionTime) {
+        counter.innerHTML = count;
+        timeGauge.style.width = count * gaugeUnit + "px";
+
+        count++;
+    } else {
+        count = 0;
+    } 
+
+    here is if count reaches 10 then again i made it 0 in else part.
+
+    and i am going to add this function in timeIntervel. so i can run this code each second

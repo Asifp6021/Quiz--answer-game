@@ -9,6 +9,7 @@ const answerChoiceD = document.querySelector('#D');
 const timeGauge = document.querySelector('.time-gauge');
 const progressContainer = document.querySelector('.progress-container');
 const scoreContainer = document.querySelector('.score-container');
+const counter = document.querySelector('.counter');
 
 //questions
 let questions = [
@@ -130,17 +131,29 @@ function renderQuestions() {
 	document.body.style.backgroundImage = bodyImg;
 }
 
+renderQuestions();
 start.style.display = 'none';
 quiz.style.visibility = 'visible';
-
-renderQuestions();
-
+renderProgress();
+renderTimecounter();
+TIMER = setInterval(renderTimecounter, 1000);
 
 // rendering progress bar element dynamically
 function renderProgress() {
-    for (let questionIndex = 0; questionIndex < lastQuestion; questionIndex++) {
-        progressContainer.innerHTML += "<div class='progress-box' id=" + questionIndex + "></div>"
-    }
+	for (let questionIndex = 0; questionIndex < lastQuestion; questionIndex++) {
+		progressContainer.innerHTML +=
+			"<div class='progress-box' id=" + questionIndex + '></div>';
+	}
 }
 
-renderProgress();
+// rendring timeCounter
+function renderTimecounter() {
+	if (count <= questionTime) {
+		counter.innerHTML = count;
+		timeGauge.style.width = count * gaugeUnit + 'px';
+
+		count++;
+	} else {
+		count = 0;
+	}
+}
